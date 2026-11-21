@@ -11,6 +11,7 @@ function dumpTopics(file: string): string[] {
 
 const DUMPS = [
 	{ file: "topics_dump_eu07.json", loco: "eu07" },
+	{ file: "topics_dump_ep08.json", loco: "eu07" },
 	{ file: "topics_dump_en76.json", loco: "en76" },
 	{ file: "topics_dump_ed250.json", loco: "ed250" },
 	{ file: "topics_dump_traxx_e186.json", loco: "traxx" },

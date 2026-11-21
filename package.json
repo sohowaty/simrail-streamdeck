@@ -11,7 +11,8 @@
     "link": "streamdeck link com.simrailmqtt.streamdeck.sdPlugin",
     "pack": "npm run build && streamdeck pack com.simrailmqtt.streamdeck.sdPlugin --force -o dist",
     "preview:build": "rolldown scripts/gallery.ts --platform node --format esm -o dist/preview/gallery.mjs && node dist/preview/gallery.mjs",
-    "build:ui": "rolldown scripts/gen-ui-catalog.ts --platform node --format esm -o dist/gen-ui-catalog.mjs && node dist/gen-ui-catalog.mjs"
+    "build:ui": "rolldown scripts/gen-ui-catalog.ts --platform node --format esm -o dist/gen-ui-catalog.mjs && node dist/gen-ui-catalog.mjs",
+    "live-test": "rolldown scripts/live-test.ts --platform node --format esm -o dist/live-test.mjs && node dist/live-test.mjs"
   },
   "license": "MIT",
   "type": "module",

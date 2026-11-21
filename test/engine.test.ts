@@ -71,11 +71,19 @@ describe("set / cycle", () => {
 		expect(view(ch3, lookup({ "trainset/radio_channel": 2 }), new Map(), false).on).toBe(false);
 	});
 
-	it("EU07 Pc1 preset switches all five front lamps", () => {
-		const pubs = keyDown(cmd("eu07", "light.preset.front_pc1"), lookup({}), new Map());
-		expect(pubs).toContainEqual({ topic: "physics_input_eu07/headlight_individual_ft", value: 16 });
-		expect(pubs).toContainEqual({ topic: "physics_input_eu07/endsignal_individual_fr", value: -2 });
-		expect(pubs).toHaveLength(5);
+	it("EU07 lamp presets use the live-tested values: 1 white, -1 red, 0 off", () => {
+		const front = "physics_input_eu07/headlight_individual_f";
+		expect(keyDown(cmd("eu07", "light.preset.front_pc1"), lookup({}), new Map())).toEqual([
+			{ topic: `${front}l`, value: 1 },
+			{ topic: `${front}t`, value: 1 },
+			{ topic: `${front}r`, value: 1 },
+		]);
+		expect(keyDown(cmd("eu07", "light.preset.front_pc5"), lookup({}), new Map())).toEqual([
+			{ topic: `${front}l`, value: -1 },
+			{ topic: `${front}t`, value: 0 },
+			{ topic: `${front}r`, value: -1 },
+		]);
+		expect(keyDown(cmd("eu07", "light.preset.front_off"), lookup({}), new Map()).map((p) => p.value)).toEqual([0, 0, 0]);
 	});
 
 	it("cycle moves to the next mode and wraps", () => {

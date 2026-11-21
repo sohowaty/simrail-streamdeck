@@ -44,13 +44,15 @@ function traxxCommands(diesel: boolean): Command[] {
 			{ value: 3, label: "low beams", short: "Low\nbeams", fn: "lights.dim" },
 			{ value: 4, label: "high beams", short: "High\nbeams" },
 		], "Headlights"),
-		lights.toggle({ id: "light.cab", fn: "lights.cab", label: "Lights – cab light", short: "Cab\nlight", topic: gin("cabin_light"), off: -1, on: 1, feedback: lamp(gout("cab_light")) }),
+		lights.toggle({ id: "light.cab", fn: "lights.cab", label: "Lights – cab light", short: "Cab\nlight", topic: gin("cabin_light"), off: -1, on: 1, feedback: lamp(`${OUT}/cab_light`) }),
 		lights.set({ id: "light.cab_desk", fn: "lights.dashboard", label: "Lights – cab switch: desk light", short: "Desk\nlight", publish: { topic: gin("cabin_light"), value: 2 }, feedback: lamp(`${OUT}/desk_light`) }),
 		lights.toggle({ id: "light.instruments", fn: "lights.instruments", label: "Lights – instrument backlight", short: "Instr\nlight", topic: gin("instrument_light"), off: diesel ? 0 : -1, on: 1, feedback: lamp(`${OUT}/instrument_light`) }),
 
-		safety.momentary({ id: "safety.ack", fn: "safety.ack", label: "SHP / CA acknowledge", short: "SHP\nCA", topic: gin("security_system_button"), press: 1, release: diesel ? -1 : 0 }),
-		radiostop(safety),
+		safety.momentary({ id: "safety.ack", fn: "safety.ack", label: "SHP / CA acknowledge", short: "SHP\nCA", topic: gin("security_system_button"), press: 1, release: diesel ? -1 : 0, feedback: lamp(`${OUT}/alerter`, `${OUT}/shp`) }),
+		radiostop(safety, `${OUT}/radiostop_active`),
 		safety.toggle({ id: "safety.ebrake", fn: "safety.ebrake", label: "Emergency brake button", short: "Emerg.\nbrake", topic: gin("emergency_brake_button_flag"), off: -1, on: 1 }),
+		safety.momentary({ id: "safety.etcs_ack", fn: "safety.etcs_ack", label: "ETCS acknowledge", short: "ETCS\nACK", topic: gin("etcs_ack_button"), press: 1, release: 0, feedback: lamp(gout("etcs_ack_light")), note: "not on the Traxx wiki page; same as the live-tested ED250 key" }),
+		safety.toggle({ id: "safety.etcs_isolate", fn: "safety.etcs_isolate", label: "ETCS isolation", short: "ETCS\nisolate", topic: gin("etcs_isolation_rq"), off: -1, on: 1, feedback: lamp(gout("security_system_etcs_disabled")), note: "not on the Traxx wiki page" }),
 	];
 }
 

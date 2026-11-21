@@ -23,6 +23,7 @@ const KEYPAD: [string, string, string][] = [
 	["radio_null", "NULL", "Radio\nNULL"],
 	["radio_tab", "TAB", "Radio\nTAB"],
 	["radio_hash", "#", "Radio\n#"],
+	["radio_star", "*", "Radio\n*"],
 	...Array.from({ length: 10 }, (_, i): [string, string, string] => [`radio_${i}`, `${i}`, `Radio\n${i}`]),
 	...Array.from({ length: 9 }, (_, i): [string, string, string] => [`radio_f${i + 1}`, `F${i + 1}`, `Radio\nF${i + 1}`]),
 ];
@@ -39,7 +40,7 @@ const pair = (a: string, b: string, value: number) => [
 	{ topic: `${IN}/${b}`, value },
 ];
 
-/** ČD 163 (wiki 71E). Not yet checked against a dump. */
+/** ČD 163 (wiki 71E). Topics checked against test/fixtures/dumps/topics_dump_163.json. */
 export const cd163: Loco = {
 	id: "cd163",
 	name: "ČD 163 (71E)",
@@ -73,6 +74,7 @@ export const cd163: Loco = {
 		lights.set({ id: "light.cab_pl", label: "Lights – cab light (PL)", short: "Cab\nPL", publish: { topic: `${IN}/cabin_light`, value: 2 }, feedback: equals(`${IN}/cabin_light`, 2) }),
 		lights.toggle({ id: "light.instruments", fn: "lights.instruments", label: "Lights – instrument backlight (TL)", short: "Instr\nlight", topic: `${IN}/instrument_light`, off: 0, on: 1, feedback: lamp(`${OUT}/instrument_light`) }),
 		lights.toggle({ id: "light.dashboard", fn: "lights.dashboard", label: "Lights – dashboard light (left)", short: "Dash\nleft", topic: `${IN}/dashboard_light_l`, off: -1, on: 1, feedback: lamp(`${OUT}/dashboard_light_l`) }),
+		lights.toggle({ id: "light.dashboard_r", label: "Lights – dashboard light (right)", short: "Dash\nright", topic: `${IN}/dashboard_light_r`, off: -1, on: 1, feedback: lamp(`${OUT}/dashboard_light_r`), note: "from the topic dump; values assumed like the left one" }),
 
 		safety.momentary({ id: "safety.ack", fn: "safety.ack", label: "Alerter acknowledge (both buttons)", short: "Alerter", topic: `${IN}/alerter_l`, also: [`${IN}/alerter_r`], press: 1, release: -1, feedback: lamp(`${OUT}/ca_lamp`, `${OUT}/shp_lamp`) }),
 		radiostop(safety, undefined, `${IN}/radio_radiostop`),

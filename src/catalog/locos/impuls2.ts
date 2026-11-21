@@ -10,7 +10,7 @@ const horn = section("horn", "dump");
 const lights = section("lights", "dump");
 const safety = section("safety", "dump");
 
-/** Impuls 2 (36WEd). Not yet checked against a dump. */
+/** Impuls 2 (36WEd). Topics checked against test/fixtures/dumps/topics_dump_impuls.json. */
 export const impuls2: Loco = {
 	id: "impuls2",
 	name: "Impuls 2 (36WEd)",
@@ -25,6 +25,7 @@ export const impuls2: Loco = {
 
 		horn.momentary({ id: "horn.low", fn: "horn.low", label: "Horn – low tone", short: "Horn\nlow", topic: `${IN}/horn`, press: 1, release: 0 }),
 		horn.momentary({ id: "horn.high", fn: "horn.high", label: "Horn – high tone", short: "Horn\nhigh", topic: `${IN}/horn`, press: 2, release: 0 }),
+		horn.momentary({ id: "horn.left", label: "Horn – left button", short: "Horn\nleft", topic: `${IN}/horn_l`, press: 1, release: 0, note: "from the topic dump (rests at 0); not on the wiki, 0/1 assumed" }),
 		horn.momentary({ id: "horn.pedal", label: "Horn pedal", short: "Horn\npedal", topic: `${IN}/horn_pedal`, press: 1, release: 0 }),
 		horn.momentary({ id: "horn.whistle", fn: "horn.whistle", label: "Whistle", short: "Whistle", topic: `${IN}/whistle`, press: 1, release: 0 }),
 
@@ -43,8 +44,11 @@ export const impuls2: Loco = {
 		lights.toggle({ id: "light.cab", fn: "lights.cab", label: "Lights – cab light", short: "Cab\nlight", topic: `${IN}/cablight`, off: 0, on: 1, feedback: lamp(`${OUT}/cabin_light_on`) }),
 		lights.toggle({ id: "light.dashboard", fn: "lights.dashboard", label: "Lights – dashboard light", short: "Dash\nlight", topic: `${IN}/dashboard_light`, off: 0, on: 1, feedback: lamp(`${OUT}/dashboard_light_on`) }),
 
-		safety.momentary({ id: "safety.ack", fn: "safety.ack", label: "SHP / CA acknowledge", short: "SHP\nCA", topic: `${IN}/security_system_button`, press: 1, release: 0, feedback: lamp(`${OUT}/alerter_lit`, `${OUT}/shp`) }),
-		radiostop(safety),
+		lights.toggle({ id: "light.dashboard_l", label: "Lights – dashboard light (left)", short: "Dash\nleft", topic: `${IN}/dashboard_lights_l`, off: 0, on: 1, feedback: lamp(`${OUT}/dashboard_light_l_on`), note: "from the topic dump; 0/1 assumed like dashboard_light" }),
+		lights.toggle({ id: "light.instruments", fn: "lights.instruments", label: "Lights – instrument backlight", short: "Instr\nlight", topic: gin("instrument_light"), off: -1, on: 1, feedback: lamp(`${OUT}/instrument_light_on`), note: "the dump has instrument_light_on but no Impuls input of its own; general instrument_light assumed, -1 = off as live-tested on the EP08" }),
+
+		safety.momentary({ id: "safety.ack", fn: "safety.ack", label: "SHP / CA acknowledge", short: "SHP\nCA", topic: `${IN}/security_system_button`, press: 1, release: 0, feedback: lamp(`${OUT}/alerter_lit`, `${OUT}/alerter`, `${OUT}/shp`) }),
+		radiostop(safety, `${OUT}/radiostop_active`),
 		safety.momentary({ id: "safety.ebrake", fn: "safety.ebrake", label: "Emergency brake button", short: "Emerg.\nbrake", topic: `${IN}/emergency_brake_bt`, press: 1, release: -1 }),
 		safety.momentary({ id: "safety.etcs_ack", fn: "safety.etcs_ack", label: "ETCS acknowledge", short: "ETCS\nACK", topic: gin("etcs_ack_button"), press: 1, release: -1, feedback: lamp(gout("etcs_ack_light")) }),
 		safety.toggle({ id: "safety.etcs_isolate", fn: "safety.etcs_isolate", label: "ETCS isolation", short: "ETCS\nisolate", topic: gin("etcs_isolation_rq"), off: -1, on: 1 }),

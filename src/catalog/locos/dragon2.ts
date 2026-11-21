@@ -9,7 +9,7 @@ const horn = section("horn", "dump");
 const lights = section("lights", "dump");
 const safety = section("safety", "dump");
 
-/** Dragon 2 (ET25 / E6ACTa). Not yet checked against a dump. */
+/** Dragon 2 (ET25 / E6ACTa). Topics checked against test/fixtures/dumps/topics_dump_e6act.json. */
 export const dragon2: Loco = {
 	id: "dragon2",
 	name: "Dragon 2 (ET25 / E6ACTa)",
@@ -42,10 +42,12 @@ export const dragon2: Loco = {
 		lights.set({ id: "light.cab_desk", label: "Lights – cab switch: desk light", short: "Desk\nlight", publish: { topic: gin("cabin_light"), value: 2 } }),
 		lights.toggle({ id: "light.dashboard", fn: "lights.dashboard", label: "Lights – desk backlight", short: "Dash\nlight", topic: `${IN}/dashboard_light_secondary`, off: -1, on: 1, feedback: lamp(gout("dashboard_light")) }),
 
-		safety.momentary({ id: "safety.ack", fn: "safety.ack", label: "SHP / CA acknowledge", short: "SHP\nCA", topic: gin("security_system_button"), press: 1, release: 0 }),
+		safety.momentary({ id: "safety.ack", fn: "safety.ack", label: "SHP / CA acknowledge", short: "SHP\nCA", topic: gin("security_system_button"), press: 1, release: 0, feedback: lamp(`${OUT}/alerter`, `${OUT}/shp`) }),
 		radiostop(safety, `${OUT}/radiostop_active`),
 		safety.toggle({ id: "safety.ebrake", fn: "safety.ebrake", label: "Emergency brake button", short: "Emerg.\nbrake", topic: gin("emergency_brake_button_flag"), off: -1, on: 1 }),
 		safety.momentary({ id: "safety.etcs_ack", fn: "safety.etcs_ack", label: "ETCS acknowledge", short: "ETCS\nACK", topic: gin("etcs_ack_button"), press: 1, release: 0, feedback: lamp(gout("etcs_ack_light")) }),
 		safety.toggle({ id: "safety.etcs_isolate", fn: "safety.etcs_isolate", label: "ETCS isolation", short: "ETCS\nisolate", topic: gin("etcs_isolation_rq"), off: -1, on: 1 }),
+		safety.toggle({ id: "safety.disable_shp", label: "Disable SHP", short: "SHP\noff", topic: `${IN}/disable_shp`, off: 0, on: 1, feedback: lamp(gout("security_system_shp_disabled")), note: "from the topic dump (rests at 0); 0/1 assumed" }),
+		safety.momentary({ id: "safety.shp_test", label: "SHP test", short: "SHP\ntest", topic: `${IN}/shp_test`, press: 1, release: 0, note: "from the topic dump (rests at 0); 0/1 assumed" }),
 	],
 };

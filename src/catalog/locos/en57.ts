@@ -10,7 +10,7 @@ const horn = section("horn", "dump");
 const lights = section("lights", "dump");
 const safety = section("safety", "dump");
 
-/** EN57 / EN71 "Kibel" (wiki Kibel). Not yet checked against a dump. */
+/** EN57 / EN71 "Kibel" (wiki Kibel). Topics checked against test/fixtures/dumps/topics_dump_en57.json. */
 export const en57: Loco = {
 	id: "en57",
 	name: "EN57 / EN71 (Kibel)",
@@ -32,12 +32,12 @@ export const en57: Loco = {
 		lights.toggle({ id: "light.dim_right", label: "Lights – dim right headlight", short: "Dim\nright", topic: `${IN}/dim_right_headlight`, off: -1, on: 1 }),
 		lights.momentary({ id: "light.passenger_on", label: "Lights – passenger lights on", short: "Pass.\non", topic: `${IN}/passanger_light_enable_rq`, press: 1, release: -1 }),
 		lights.momentary({ id: "light.passenger_off", label: "Lights – passenger lights off", short: "Pass.\noff", topic: `${IN}/passanger_light_disable_rq`, press: 1, release: -1 }),
-		lights.toggle({ id: "light.destination", label: "Lights – destination board", short: "Dest.\nboard", topic: `${IN}/destination_board_backlight`, off: -1, on: 1 }),
+		lights.toggle({ id: "light.destination", label: "Lights – destination board", short: "Dest.\nboard", topic: `${IN}/destination_board_backlight`, off: -1, on: 1, feedback: lamp(`${OUT}/destination_board_backlight`) }),
 		...individualLights(lights, IN, "Cab A", "Cab B"),
 
 		safety.momentary({ id: "safety.ack", fn: "safety.ack", label: "SHP / CA acknowledge (both cabs)", short: "SHP\nCA", topic: `${IN}/security_system_button_a`, also: [`${IN}/security_system_button_b`], press: 1, release: -1, feedback: lamp(`${OUT}/alerter`, `${OUT}/shp`) }),
 		safety.momentary({ id: "safety.ack_a", label: "SHP / CA acknowledge (cab A)", short: "SHP CA\nA", topic: `${IN}/security_system_button_a`, press: 1, release: -1, feedback: lamp(`${OUT}/alerter`, `${OUT}/shp`) }),
 		safety.momentary({ id: "safety.ack_b", label: "SHP / CA acknowledge (cab B)", short: "SHP CA\nB", topic: `${IN}/security_system_button_b`, press: 1, release: -1, feedback: lamp(`${OUT}/alerter`, `${OUT}/shp`) }),
-		radiostop(safety),
+		radiostop(safety, `${OUT}/radiostop_active`),
 	],
 };

@@ -24,8 +24,7 @@
 		}
 	],
 	"Nodejs": {
-		"Version": "24",
-		"Debug": "disabled"
+		"Version": "24"
 	},
 	"Actions": [
 		{

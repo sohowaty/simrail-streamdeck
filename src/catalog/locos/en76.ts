@@ -49,7 +49,7 @@ export const en76: Loco = {
 		lights.toggle({ id: "light.dashboard", fn: "lights.dashboard", label: "Lights – dashboard light", short: "Dash\nlight", topic: gin("dashboard_light"), off: -1, on: 1, feedback: lamp(`${OUT}/dashboard_lights_on`), note: "values not documented, -1/1 assumed" }),
 		lights.momentary({ id: "light.dashboard_impulse", label: "Lights – dashboard (hold)", short: "Dash\nhold", topic: `${IN}/dashboard_light_impulse`, press: 1, release: -1, feedback: lamp(`${OUT}/dashboard_lights_on`) }),
 
-		safety.momentary({ id: "safety.ack", fn: "safety.ack", label: "SHP / CA acknowledge", short: "SHP\nCA", topic: gin("security_system_button"), press: 1, release: -1, feedback: lamp(`${OUT}/alerter_lit`, `${OUT}/shp`) }),
+		safety.momentary({ id: "safety.ack", fn: "safety.ack", label: "SHP / CA acknowledge", short: "SHP\nCA", topic: gin("security_system_button"), press: 1, release: -1, feedback: lamp(`${OUT}/alerter_lit`, `${OUT}/alerter`, `${OUT}/shp`) }),
 		radiostop(safety, `${OUT}/radiostop_active`),
 	],
 };

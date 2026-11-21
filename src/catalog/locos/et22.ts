@@ -9,7 +9,7 @@ const horn = section("horn", "dump");
 const lights = section("lights", "dump");
 const safety = section("safety", "dump");
 
-/** ET22 (wiki 201E). Not yet checked against a dump. */
+/** ET22 (wiki 201E). Topics checked against test/fixtures/dumps/topics_dump_et22.json. */
 export const et22: Loco = {
 	id: "et22",
 	name: "ET22",
@@ -27,7 +27,7 @@ export const et22: Loco = {
 		...individualLights(lights, IN, "Cab A", "Cab B"),
 
 		safety.momentary({ id: "safety.ack", fn: "safety.ack", label: "SHP / CA acknowledge", short: "SHP\nCA", topic: `${IN}/security_system_button`, press: 1, release: -1, feedback: lamp(`${OUT}/alerter`, `${OUT}/shp`) }),
-		radiostop(safety),
+		radiostop(safety, `${OUT}/radiostop_active`),
 		safety.toggle({ id: "safety.ebrake", fn: "safety.ebrake", label: "Emergency brake button", short: "Emerg.\nbrake", topic: `${IN}/emergency_brake_button_rq`, off: -4, on: 4 }),
 	],
 };

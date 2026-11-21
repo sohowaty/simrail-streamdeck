@@ -79,96 +79,74 @@ export function positions(
 }
 
 /**
- * Individual headlight / end-signal switches used by EU07, EP08, ET22 and EN57.
- * Each lamp has its own magic value: +v = on, -v = off.
+ * Individual headlights of the old Polish locos (EU07/EP07/EP08, ET22, EN57). Live-tested on the EP08 2026-11-21:
+ * each `headlight_individual_*` topic is the lamp's own switch: any positive value = white, 0 = off,
+ * -1 = red (left/right lamps; the top lamp has no red filter and goes dark). The `endsignal_individual_*` topics
+ * listed in the dumps had no visible effect, and the wiki's 2/16/128/… values only worked because the game
+ * looks at the sign.
  */
-export const HEADLIGHT_VALUES = {
-	headlight_individual_fl: 128,
-	headlight_individual_fr: 2,
-	headlight_individual_ft: 16,
-	headlight_individual_rl: 65536,
-	headlight_individual_rr: 1024,
-	headlight_individual_rt: 8192,
-	endsignal_individual_fl: 128,
-	endsignal_individual_fr: 2,
-	endsignal_individual_rl: 65536,
-	endsignal_individual_rr: 1024,
-} as const;
+export const LAMP = { white: 1, off: 0, red: -1 } as const;
+/** Shown under every lamp command in the settings panel. */
+const SWITCH_NOTE = "sets the lamp directly: the lamp switch on the cab panel does not move";
 
 export function individualLights(s: ReturnType<typeof section>, prefix: string, cabA: string, cabB: string): Command[] {
-	const t = (f: keyof typeof HEADLIGHT_VALUES) => `${prefix}/${f}`;
-	const on = (f: keyof typeof HEADLIGHT_VALUES): Pub => ({ topic: t(f), value: HEADLIGHT_VALUES[f] });
-	const off = (f: keyof typeof HEADLIGHT_VALUES): Pub => ({ topic: t(f), value: -HEADLIGHT_VALUES[f] });
-	const names: [keyof typeof HEADLIGHT_VALUES, string, string][] = [
-		["headlight_individual_fl", cabA, "headlight left"],
-		["headlight_individual_ft", cabA, "headlight top"],
-		["headlight_individual_fr", cabA, "headlight right"],
-		["endsignal_individual_fl", cabA, "end signal left"],
-		["endsignal_individual_fr", cabA, "end signal right"],
-		["headlight_individual_rl", cabB, "headlight left"],
-		["headlight_individual_rt", cabB, "headlight top"],
-		["headlight_individual_rr", cabB, "headlight right"],
-		["endsignal_individual_rl", cabB, "end signal left"],
-		["endsignal_individual_rr", cabB, "end signal right"],
+	const ends = [
+		{ cab: cabA, key: "front", l: "headlight_individual_fl", t: "headlight_individual_ft", r: "headlight_individual_fr" },
+		{ cab: cabB, key: "rear", l: "headlight_individual_rl", t: "headlight_individual_rt", r: "headlight_individual_rr" },
 	];
-	const shortName = (what: string) =>
-		(what.startsWith("headlight") ? "Head " : "Red ") + what.split(" ").pop()![0].toUpperCase();
-	const toggles = names.map(([f, cab, what]) =>
-		s.toggle({
-			id: `light.${f}`,
-			label: `Lights – ${cab} ${what}`,
-			short: `${cab}\n${shortName(what)}`,
-			topic: t(f),
-			off: -HEADLIGHT_VALUES[f],
-			on: HEADLIGHT_VALUES[f],
-			feedback: equals(t(f), HEADLIGHT_VALUES[f]),
-		}),
-	);
-	const presets = [
-		s.set({
-			id: "light.preset.front_pc1",
-			fn: "lights.front_drive",
-			label: `Lights – ${cabA}: 3 white (Pc1)`,
-			short: `${cabA}\nPc1`,
-			publish: [on("headlight_individual_fl"), on("headlight_individual_ft"), on("headlight_individual_fr"), off("endsignal_individual_fl"), off("endsignal_individual_fr")],
-		}),
-		s.set({
-			id: "light.preset.front_pc5",
-			fn: "lights.front_tail",
-			label: `Lights – ${cabA}: 2 red (Pc5, end of train)`,
-			short: `${cabA}\nPc5`,
-			publish: [off("headlight_individual_fl"), off("headlight_individual_ft"), off("headlight_individual_fr"), on("endsignal_individual_fl"), on("endsignal_individual_fr")],
-		}),
-		s.set({
-			id: "light.preset.front_off",
-			fn: "lights.front_off",
-			label: `Lights – ${cabA}: all off`,
-			short: `${cabA}\noff`,
-			publish: [off("headlight_individual_fl"), off("headlight_individual_ft"), off("headlight_individual_fr"), off("endsignal_individual_fl"), off("endsignal_individual_fr")],
-		}),
-		s.set({
-			id: "light.preset.rear_pc1",
-			fn: "lights.rear_drive",
-			label: `Lights – ${cabB}: 3 white (Pc1)`,
-			short: `${cabB}\nPc1`,
-			publish: [on("headlight_individual_rl"), on("headlight_individual_rt"), on("headlight_individual_rr"), off("endsignal_individual_rl"), off("endsignal_individual_rr")],
-		}),
-		s.set({
-			id: "light.preset.rear_pc5",
-			fn: "lights.rear_tail",
-			label: `Lights – ${cabB}: 2 red (Pc5, end of train)`,
-			short: `${cabB}\nPc5`,
-			publish: [off("headlight_individual_rl"), off("headlight_individual_rt"), off("headlight_individual_rr"), on("endsignal_individual_rl"), on("endsignal_individual_rr")],
-		}),
-		s.set({
-			id: "light.preset.rear_off",
-			fn: "lights.rear_off",
-			label: `Lights – ${cabB}: all off`,
-			short: `${cabB}\noff`,
-			publish: [off("headlight_individual_rl"), off("headlight_individual_rt"), off("headlight_individual_rr"), off("endsignal_individual_rl"), off("endsignal_individual_rr")],
-		}),
-	];
-	return [...presets, ...toggles];
+	const pub = (field: string, value: number): Pub => ({ topic: `${prefix}/${field}`, value });
+	const out: Command[] = [];
+	for (const e of ends) {
+		out.push(
+			s.set({
+				id: `light.preset.${e.key}_pc1`,
+				fn: `lights.${e.key}_drive`,
+				label: `Lights – ${e.cab}: 3 white (Pc1)`,
+				short: `${e.cab}\nPc1`,
+				publish: [pub(e.l, LAMP.white), pub(e.t, LAMP.white), pub(e.r, LAMP.white)],
+			}),
+			s.set({
+				id: `light.preset.${e.key}_pc5`,
+				fn: `lights.${e.key}_tail`,
+				label: `Lights – ${e.cab}: 2 red (Pc5, end of train)`,
+				short: `${e.cab}\nPc5`,
+				publish: [pub(e.l, LAMP.red), pub(e.t, LAMP.off), pub(e.r, LAMP.red)],
+			}),
+			s.set({
+				id: `light.preset.${e.key}_off`,
+				fn: `lights.${e.key}_off`,
+				label: `Lights – ${e.cab}: all off`,
+				short: `${e.cab}\noff`,
+				publish: [pub(e.l, LAMP.off), pub(e.t, LAMP.off), pub(e.r, LAMP.off)],
+			}),
+		);
+	}
+	// Single lamps: left/right step white → red → off; the top lamp toggles white / off.
+	for (const e of ends) {
+		for (const [field, side] of [[e.l, "left"], [e.r, "right"]] as const) {
+			out.push(
+				s.cycle({
+					id: `light.${field}`,
+					label: `Lights – ${e.cab} ${side} lamp (white → red → off)`,
+					short: `${e.cab}\nLamp ${side[0].toUpperCase()}`,
+					topic: `${prefix}/${field}`,
+					values: [LAMP.white, LAMP.red, LAMP.off],
+				}),
+			);
+		}
+		out.push(
+			s.toggle({
+				id: `light.${e.t}`,
+				label: `Lights – ${e.cab} top lamp`,
+				short: `${e.cab}\nLamp top`,
+				topic: `${prefix}/${e.t}`,
+				off: LAMP.off,
+				on: LAMP.white,
+				feedback: equals(`${prefix}/${e.t}`, LAMP.white),
+			}),
+		);
+	}
+	return out.map((c) => ({ ...c, note: SWITCH_NOTE }));
 }
 
 /** Old radio box (EU07, EN57, ...): absolute channel knob 1–10, volume 0–5. */

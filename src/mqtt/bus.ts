@@ -123,12 +123,28 @@ export class SimRailBus extends EventEmitter {
 			return;
 		}
 		if (topic === "request_topics" || value === undefined) return;
+		if (this.locoChanged(topic, payload)) {
+			this.clearSession();
+			this.emitStatus();
+			this.requestTopics();
+		}
 		if (this.values.get(topic) === value) return;
 		const isNew = !this.values.has(topic);
 		this.values.set(topic, value);
 		// The broker replays cached input states on subscribe, so the loco can show up before the topic list.
 		if (isNew && !this.loco && topic.startsWith("physics_input_") && !topic.startsWith("physics_input_general/")) this.detect();
 		this.emit("value", topic);
+	}
+
+	/**
+	 * The game can keep the broker running across a scenario change, so the plugin can't rely on a reconnect to
+	 * notice a new loco. A game-sent output (0x01/0x02 prefixed, never an echoed raw-float publish from some
+	 * client) from another loco's topic group means the loco has changed.
+	 */
+	private locoChanged(topic: string, payload: Buffer): boolean {
+		if (!this.loco || payload.length === 4) return false;
+		const m = /^physics_output_([^/]+)\//.exec(topic);
+		return !!m && m[1] !== "general" && m[1] !== this.loco.inputPrefix;
 	}
 
 	private onTopicList(value: number | string | undefined): void {
@@ -145,7 +161,7 @@ export class SimRailBus extends EventEmitter {
 		// The response goes to every subscriber and the broker replays the last one on subscribe, so it may be
 		// an answer to someone else's prefix request (e.g. only etcs/). Only a list with inputs is the full one.
 		if (!list.some((t) => t.startsWith("physics_input_"))) return;
-		const first = !this.topics;
+		const known = this.topics;
 		this.topics = new Set(list);
 
 		// Seed state from the list (inputs carry their current value; outputs are often empty until they change).
@@ -158,7 +174,8 @@ export class SimRailBus extends EventEmitter {
 		}
 		// A `#` subscription only gets live changes; explicit topic subscriptions make the broker replay its
 		// cached value (lamps that are already lit, the radio channel, ...).
-		if (first) this.client?.subscribe(list, { qos: 0 });
+		// Subscribe whenever the list is new (first list, or a new loco after a scenario change).
+		if (!known) this.client?.subscribe(list, { qos: 0 });
 
 		this.detect();
 		this.emit("topics");
