@@ -4,7 +4,7 @@ import { decode, encodeFloat } from "../src/mqtt/codec";
 
 describe("codec", () => {
 	it("publishes raw little-endian float32 (no type byte)", () => {
-		// Same bytes as struct.pack("<f", 1.0) in tools/simrail_probe.py
+		// Same bytes as Python's struct.pack("<f", 1.0)
 		expect([...encodeFloat(1)]).toEqual([0x00, 0x00, 0x80, 0x3f]);
 		expect([...encodeFloat(-1)]).toEqual([0x00, 0x00, 0x80, 0xbf]);
 		expect(encodeFloat(2).length).toBe(4);

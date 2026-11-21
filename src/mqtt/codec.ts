@@ -1,5 +1,5 @@
 /**
- * SimRail payload format (see docs/protocol.md):
+ * SimRail payload format:
  *   game -> client : 0x01 + float32 LE (5 bytes)  or  0x02 + UTF-8 string
  *   client -> game : raw float32 LE, no type byte (4 bytes). The broker echoes these back unchanged.
  */

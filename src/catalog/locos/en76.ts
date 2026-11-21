@@ -10,7 +10,7 @@ const horn = section("horn", "dump");
 const lights = section("lights", "dump");
 const safety = section("safety", "dump");
 
-/** EN76 / EN96 "Elf" (wiki Elf). Topics checked against dumps/topics_dump_en76.json. */
+/** EN76 / EN96 "Elf" (wiki Elf). Topics checked against test/fixtures/dumps/topics_dump_en76.json. */
 export const en76: Loco = {
 	id: "en76",
 	name: "EN76 / EN96 (Elf)",

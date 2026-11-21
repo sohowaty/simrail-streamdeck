@@ -5,7 +5,7 @@ broker. Each key's settings let you pick commands from lists grouped by loco, so
 Keys also show live state: the SHP/CA key lights up when the alerter asks for acknowledgment, radio keys show the
 channel, and toggles follow the lamp in the cab.
 
-Requires Stream Deck 7.1 or newer. The protocol is described in [../docs/protocol.md](../docs/protocol.md).
+Requires Stream Deck 7.1 or newer.
 
 ## Using it
 1. In SimRail, enable MQTT (Options → Controls → External input) and restart the session.
@@ -46,13 +46,9 @@ Under each command, the settings panel shows the topics it uses and how reliable
 | EN76 / EN96 (Elf) | `elf_34we` | dump |
 | ET22, EN57, ED250, Dragon 2, Traxx, Traxx DE, Impuls 2, ČD 163 | per wiki | wiki |
 
-To check another loco, start a session in it and run:
-
-```
-python tools/simrail_probe.py dump
-```
-
-Then rename the output to `dumps/topics_dump_<loco>.json`. Add it to `DUMPS` in `test/catalog.test.ts`, which checks
+To check another loco, start a session in it, publish anything to `request_topics` and save the JSON the game sends
+back on `request_topics_response` (drop the leading `0x02` byte) as `test/fixtures/dumps/topics_dump_<loco>.json`.
+Add it to `DUMPS` in `test/catalog.test.ts`, which checks
 that every topic the catalog uses exists in the dump and that the loco is detected. Then raise those entries to
 `dump` in `src/catalog/locos/<loco>.ts`.
 
@@ -82,7 +78,7 @@ that every topic the catalog uses exists in the dump and that the loco is detect
   property-inspector WebSocket. The plugin sends it the catalog.
 
 ## Development
-Install Node.js 24+, then run these from `streamdeck/`:
+Install Node.js 24+, then run these from the repo root:
 
 ```
 npm install

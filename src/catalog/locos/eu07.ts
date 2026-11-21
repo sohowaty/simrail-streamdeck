@@ -9,7 +9,7 @@ const horn = section("horn", "dump");
 const lights = section("lights", "dump");
 const safety = section("safety", "dump");
 
-/** EU07 / EP07 (wiki 4E) and EP08 (wiki 102E) share the `eu07` topic group. Topics checked against dumps/topics_dump_eu07.json. */
+/** EU07 / EP07 (wiki 4E) and EP08 (wiki 102E) share the `eu07` topic group. Topics checked against test/fixtures/dumps/topics_dump_eu07.json. */
 export const eu07: Loco = {
 	id: "eu07",
 	name: "EU07 / EP07 / EP08",

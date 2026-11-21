@@ -223,7 +223,7 @@ function renderInfo(detected) {
 
 function renderRawInfo() {
 	$("info").innerHTML =
-		"Sends a raw 4-byte float, the only format SimRail accepts. Find topics with <code>tools/simrail_probe.py dump</code>.";
+		"Sends a raw 4-byte float, the only format SimRail accepts. The game lists its topics in the <code>request_topics_response</code> message.";
 	$("infoRow").hidden = false;
 }
 
