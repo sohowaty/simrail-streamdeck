@@ -1,0 +1,831 @@
+{
+  "Inputs": [
+    {
+      "Topic": "physics_input_general/drive_handle",
+      "Type": "float",
+      "CurrentValue": "3"
+    },
+    {
+      "Topic": "physics_input_general/drive_handle_pressed",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "physics_input_general/secondary_handle",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "physics_input_general/speed_ctrl",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "physics_input_general/main_brake",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "physics_input_general/local_brake",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "physics_input_general/emergency_brake_button",
+      "Type": "float",
+      "CurrentValue": "-255"
+    },
+    {
+      "Topic": "physics_input_general/security_system_button",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "physics_input_general/spring_brake_rq",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "physics_input_general/main_switch",
+      "Type": "float",
+      "CurrentValue": "1"
+    },
+    {
+      "Topic": "physics_input_general/direction_rq",
+      "Type": "float",
+      "CurrentValue": "1"
+    },
+    {
+      "Topic": "physics_input_general/battery_rq",
+      "Type": "float",
+      "CurrentValue": "1"
+    },
+    {
+      "Topic": "physics_input_general/battery_rq_off",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "physics_input_general/pantograph_front_rq",
+      "Type": "float",
+      "CurrentValue": "1"
+    },
+    {
+      "Topic": "physics_input_general/pantograph_back_rq",
+      "Type": "float",
+      "CurrentValue": "-1"
+    },
+    {
+      "Topic": "physics_input_general/pantograph_set_rq",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "physics_input_general/pantograph_set",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "physics_input_general/horn_signal",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "physics_input_general/active_cab",
+      "Type": "float",
+      "CurrentValue": "1"
+    },
+    {
+      "Topic": "physics_input_general/light_pos",
+      "Type": "float",
+      "CurrentValue": "1"
+    },
+    {
+      "Topic": "physics_input_general/brake_releaser",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "physics_input_general/unlock_brake_pipe",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "physics_input_general/assimilation_button",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "physics_input_general/lights_power",
+      "Type": "float",
+      "CurrentValue": "1"
+    },
+    {
+      "Topic": "physics_input_general/washer",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "physics_input_general/wiper",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "physics_input_general/cabin_light",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "physics_input_general/dashboard_light",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "physics_input_general/instrument_light",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "physics_input_general/sanding_button",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "physics_input_general/radiostop_rq",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "physics_input_general/radio_channel_set",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "physics_input_general/radio_enable_set",
+      "Type": "float",
+      "CurrentValue": "1"
+    },
+    {
+      "Topic": "physics_input_general/radio_selective_call",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "physics_input_general/radio_volume_set",
+      "Type": "float",
+      "CurrentValue": "1"
+    },
+    {
+      "Topic": "physics_input_general/emergency_brake_button_flag",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "physics_input_general/radio_channel_change",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "physics_input_general/cabin_light_b",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "physics_input_general/instrument_light_intensity",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "physics_input_general/emergency_pantographs",
+      "Type": "float",
+      "CurrentValue": "-255"
+    },
+    {
+      "Topic": "physics_input_general/etcs_isolation_rq",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "physics_input_general/etcs_ack_button",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "physics_input_elf_34we/airtight_test_rq",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "physics_input_elf_34we/speed_ctrl_rq",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "physics_input_elf_34we/speed_ctrl_force",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "physics_input_elf_34we/door_open",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "physics_input_elf_34we/door_close",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "physics_input_elf_34we/door_allow_switch",
+      "Type": "float",
+      "CurrentValue": "1"
+    },
+    {
+      "Topic": "physics_input_elf_34we/door_step_allow",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "physics_input_elf_34we/warning_signal_handle",
+      "Type": "float",
+      "CurrentValue": "2"
+    },
+    {
+      "Topic": "physics_input_elf_34we/dashboard_light_impulse",
+      "Type": "float",
+      "CurrentValue": "0"
+    }
+  ],
+  "Outputs": [
+    {
+      "Topic": "etcs/is_ready",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "etcs/is_active",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "etcs/level",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "etcs/mode",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "etcs/lrbg",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "etcs/lrbg_odometer",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "etcs/length_of_movement_authority",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "etcs/is_train_braking",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "etcs/permitted_speed",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "etcs/next_target_speed",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "etcs/next_target_distance",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "physics_output_general/radio_on_lamp",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_general/cab_light",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_general/instrument_light",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_general/dashboard_light",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_general/date_day",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_general/date_month",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_general/date_year",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_general/time_hours",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_general/time_minutes",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_general/time_seconds",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_general/speed_ctrl_status",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_general/etcs_level",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_general/etcs_mode",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_general/etcs_ack_requested",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_general/etcs_ack_light",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_general/weather_temp",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_general/weather_humidity",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_general/passengers_multipler",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_general/passengers_counter",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_general/security_system_etcs_disabled",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_general/security_system_ca_disabled",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_general/security_system_shp_disabled",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_general/security_system_sifa_disabled",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_general/actual_cabin",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/door",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/alerter",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/alerter_lit",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/shp",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/motor1_actual_power_pct",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/motor1_temperature",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/motor1_slip",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/motor1_active",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/motor2_actual_power_pct",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/motor2_temperature",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/motor2_slip",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/motor2_active",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/motor3_actual_power_pct",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/motor3_temperature",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/motor3_slip",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/motor3_active",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/motor4_actual_power_pct",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/motor4_temperature",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/motor4_slip",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/motor4_active",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/motor5_actual_power_pct",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/motor5_temperature",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/motor5_slip",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/motor5_active",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/motor6_actual_power_pct",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/motor6_temperature",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/motor6_slip",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/motor6_active",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/drive_direction",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/main_circuit_breaker_status",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/main_circuit_breaker_ready",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/velocity",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/odometer",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/supply_current",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/supply_voltage",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/pipe_pressure",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/brake_cylinder1_pressure",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/brake_cylinder2_pressure",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/supply_pressure",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/motor_fan_status",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/bearing_temperature",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/fire_suppression_status",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/compressor1_status",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/compressor2_status",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/pantograph_compressor_status",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/battery_status",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/spring_brake_active",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/abs_status",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/hvac_active",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/cab",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/pantograph_front",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/pantograph_rear",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/battery_voltage",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/battery_current",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/airtight_test",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/airtight_test_start_press",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/airtight_test_final_press",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/airtight_test_progress",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/radiostop_sound",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/radiostop_active",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/door_step",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "physics_output_elf_34we/dashboard_lights_on",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "trainset/name",
+      "Type": "string",
+      "CurrentValue": "trainset-0-Player"
+    },
+    {
+      "Topic": "trainset/mass",
+      "Type": "float",
+      "CurrentValue": "135000"
+    },
+    {
+      "Topic": "trainset/radio_channel",
+      "Type": "float",
+      "CurrentValue": "2"
+    },
+    {
+      "Topic": "trainset/length",
+      "Type": "float",
+      "CurrentValue": "74"
+    },
+    {
+      "Topic": "trainset/braking_factor",
+      "Type": "float",
+      "CurrentValue": "166.2722"
+    },
+    {
+      "Topic": "trainset/vehicles",
+      "Type": "float",
+      "CurrentValue": "1"
+    },
+    {
+      "Topic": "trainset/bogies",
+      "Type": "float",
+      "CurrentValue": "5"
+    },
+    {
+      "Topic": "trainset/is_derailed",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "trainset/is_bot_driving",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "trainset/doors",
+      "Type": "float",
+      "CurrentValue": "16"
+    },
+    {
+      "Topic": "trainset/wheelbase",
+      "Type": "float",
+      "CurrentValue": "67.29219"
+    },
+    {
+      "Topic": "trainset/next_signal_distance",
+      "Type": "float",
+      "CurrentValue": "144.4194"
+    },
+    {
+      "Topic": "trainset/next_distant_signal_distance",
+      "Type": "float",
+      "CurrentValue": "3.402823E+38"
+    },
+    {
+      "Topic": "trainset/next_crossing_signal_distance",
+      "Type": "float",
+      "CurrentValue": ""
+    },
+    {
+      "Topic": "trainset/next_signal_speed",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "trainset/next_signal_next_speed",
+      "Type": "float",
+      "CurrentValue": "0"
+    },
+    {
+      "Topic": "trainset/next_signal_shunting_speed",
+      "Type": "float",
+      "CurrentValue": "0"
+    }
+  ]
+}

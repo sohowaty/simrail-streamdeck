@@ -3,9 +3,9 @@ import { describe, expect, it } from "vitest";
 
 import { AUTO_BY_ID, AUTO_FUNCTIONS, commandTopics, detectLoco, LOCO_BY_ID, LOCOS, publishTopics, resolveAuto } from "../src/catalog";
 
-/** Topic list from a real game dump (dumps/ in the repo root). */
+/** Topic list from a real game dump (copied into test/fixtures/dumps). */
 function dumpTopics(file: string): string[] {
-	const d = JSON.parse(readFileSync(new URL(`../../dumps/${file}`, import.meta.url), "utf8"));
+	const d = JSON.parse(readFileSync(new URL(`./fixtures/dumps/${file}`, import.meta.url), "utf8"));
 	return [...d.Inputs, ...d.Outputs].map((e: { Topic: string }) => e.Topic);
 }
 
