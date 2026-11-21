@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>SimRail command</title>
+		<link rel="stylesheet" href="command.css" />
+	</head>
+	<body>
+		<section>
+			<div class="row">
+				<label for="loco">Loco</label>
+				<select id="loco"></select>
+			</div>
+			<div class="row" id="categoryRow">
+				<label for="category">Category</label>
+				<select id="category"></select>
+			</div>
+			<div class="row" id="commandRow">
+				<label for="command">Command</label>
+				<select id="command"></select>
+			</div>
+			<div class="row info" id="infoRow">
+				<label></label>
+				<div id="info"></div>
+			</div>
+
+			<div id="raw" hidden>
+				<div class="row">
+					<label for="rawTopic">Topic</label>
+					<input id="rawTopic" type="text" placeholder="physics_input_general/horn_signal" spellcheck="false" />
+				</div>
+				<div class="row">
+					<label for="rawMode">Behaviour</label>
+					<select id="rawMode">
+						<option value="momentary">Momentary (press / release)</option>
+						<option value="set">Set value on press</option>
+						<option value="toggle">Toggle (on / off)</option>
+					</select>
+				</div>
+				<div class="row">
+					<label for="rawPress" id="rawPressLabel">Press value</label>
+					<input id="rawPress" type="text" inputmode="decimal" placeholder="1" />
+				</div>
+				<div class="row" id="rawReleaseRow">
+					<label for="rawRelease" id="rawReleaseLabel">Release value</label>
+					<input id="rawRelease" type="text" inputmode="decimal" placeholder="0" />
+				</div>
+			</div>
+
+			<div class="row">
+				<label for="label">Key text</label>
+				<input id="label" type="text" placeholder="default" />
+			</div>
+			<div class="row hint"><label></label><div>Optional. Use <code>|</code> for a second line.</div></div>
+		</section>
+
+		<details id="connection">
+			<summary>Connection <span id="statusDot" class="dot"></span><span id="statusText"></span></summary>
+			<div class="row">
+				<label for="host">SimRail PC</label>
+				<input id="host" type="text" placeholder="127.0.0.1" spellcheck="false" />
+			</div>
+			<div class="row">
+				<label for="port">Port</label>
+				<input id="port" type="number" placeholder="1883" min="1" max="65535" />
+			</div>
+			<div class="row hint">
+				<label></label>
+				<div>Shared by all keys. Enable MQTT in SimRail (Options → Controls → External input); the broker only runs inside a session.</div>
+			</div>
+			<div class="row">
+				<label></label>
+				<button id="refresh" type="button">Re-detect loco</button>
+			</div>
+		</details>
+
+		<script src="catalog.js"></script>
+		<script src="command.js"></script>
+	</body>
+</html>

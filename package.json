@@ -1,0 +1,38 @@
+{
+  "name": "simrail-streamdeck",
+  "version": "0.1.0",
+  "description": "Stream Deck plugin for SimRail's MQTT interface",
+  "scripts": {
+    "build": "npm run build:ui && rollup -c",
+    "watch": "rollup -c -w --watch.onEnd=\"streamdeck restart com.simrailmqtt.streamdeck\"",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "validate": "streamdeck validate com.simrailmqtt.streamdeck.sdPlugin",
+    "link": "streamdeck link com.simrailmqtt.streamdeck.sdPlugin",
+    "pack": "npm run build && streamdeck pack com.simrailmqtt.streamdeck.sdPlugin --force -o dist",
+    "preview:build": "rolldown scripts/gallery.ts --platform node --format esm -o dist/preview/gallery.mjs && node dist/preview/gallery.mjs",
+    "build:ui": "rolldown scripts/gen-ui-catalog.ts --platform node --format esm -o dist/gen-ui-catalog.mjs && node dist/gen-ui-catalog.mjs"
+  },
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@elgato/streamdeck": "3.0.6",
+    "mqtt": "5.16.1"
+  },
+  "devDependencies": {
+    "@elgato/cli": "1.10.5",
+    "@rollup/plugin-commonjs": "29.0.3",
+    "@rollup/plugin-json": "6.1.0",
+    "@rollup/plugin-node-resolve": "16.0.3",
+    "@rollup/plugin-terser": "1.0.2",
+    "@rollup/plugin-typescript": "12.3.1",
+    "@tsconfig/node24": "24.0.6",
+    "@types/node": "26.6.6",
+    "aedes": "1.2.0",
+    "rollup": "4.68.8",
+    "tslib": "2.9.1",
+    "typescript": "5.9.3",
+    "vitest": "5.1.1"
+  },
+  "private": true
+}

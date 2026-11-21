@@ -1,0 +1,161 @@
+:root {
+	color-scheme: dark;
+	--bg: #2d2d2d;
+	--field: #3d3d3d;
+	--text: #d8d8d8;
+	--muted: #969696;
+	--accent: #0099ff;
+}
+
+html,
+body {
+	margin: 0;
+	background: var(--bg);
+	color: var(--text);
+	font: 9pt "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+	padding: 4px 8px 12px 0;
+}
+
+.row {
+	display: flex;
+	align-items: center;
+	min-height: 28px;
+	margin: 2px 0;
+}
+
+.row > label {
+	flex: 0 0 96px;
+	text-align: right;
+	padding-right: 10px;
+	color: var(--text);
+	box-sizing: border-box;
+}
+
+.row > select,
+.row > input,
+.row > div,
+.row > button {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+select,
+input {
+	background: var(--field);
+	color: var(--text);
+	border: 0;
+	border-radius: 3px;
+	height: 24px;
+	padding: 0 6px;
+	font: inherit;
+	outline: none;
+	box-sizing: border-box;
+}
+
+select:focus,
+input:focus {
+	box-shadow: 0 0 0 1px var(--accent);
+}
+
+optgroup {
+	color: var(--muted);
+}
+
+button {
+	background: var(--field);
+	color: var(--text);
+	border: 0;
+	border-radius: 3px;
+	height: 24px;
+	font: inherit;
+	cursor: pointer;
+	flex: 0 0 auto !important;
+	padding: 0 12px;
+}
+
+button:hover {
+	background: #4a4a4a;
+}
+
+.info > div,
+.hint > div {
+	color: var(--muted);
+	font-size: 8pt;
+	line-height: 1.45;
+	padding: 2px 0;
+	overflow-wrap: anywhere;
+}
+
+.info code,
+.hint code {
+	color: var(--text);
+}
+
+.badge {
+	display: inline-block;
+	padding: 0 5px;
+	border-radius: 3px;
+	font-size: 7.5pt;
+	font-weight: 600;
+	margin-right: 4px;
+}
+
+.badge.live {
+	background: #14532d;
+	color: #86efac;
+}
+
+.badge.dump {
+	background: #1e3a5f;
+	color: #93c5fd;
+}
+
+.badge.wiki {
+	background: #4a3b12;
+	color: #fcd34d;
+}
+
+.warn {
+	color: #fca5a5;
+}
+
+.ok {
+	color: #86efac;
+}
+
+details {
+	margin-top: 10px;
+	border-top: 1px solid #3a3a3a;
+	padding-top: 6px;
+}
+
+summary {
+	cursor: pointer;
+	padding: 4px 0 4px 18px;
+	color: var(--text);
+	list-style-position: inside;
+}
+
+.dot {
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: #6b7280;
+	margin: 0 6px 0 8px;
+}
+
+.dot.on {
+	background: #22c55e;
+}
+
+#statusText {
+	color: var(--muted);
+}
+
+[hidden] {
+	display: none !important;
+}

@@ -1,0 +1,50 @@
+{
+	"$schema": "https://schemas.elgato.com/streamdeck/plugins/manifest.json",
+	"Name": "SimRail MQTT",
+	"Version": "0.1.0.0",
+	"Author": "Claude Opus 5.5 / Soho",
+	"Description": "Radio, door, horn, light and safety-system buttons for SimRail, sent over the game's built-in MQTT broker. Pick commands per loco or let the plugin follow the loco you're driving.",
+	"Category": "SimRail MQTT",
+	"CategoryIcon": "imgs/plugin/category-icon",
+	"Icon": "imgs/plugin/marketplace",
+	"CodePath": "bin/plugin.js",
+	"UUID": "com.simrailmqtt.streamdeck",
+	"SDKVersion": 3,
+	"Software": {
+		"MinimumVersion": "7.1"
+	},
+	"OS": [
+		{
+			"Platform": "windows",
+			"MinimumVersion": "10"
+		},
+		{
+			"Platform": "mac",
+			"MinimumVersion": "12"
+		}
+	],
+	"Nodejs": {
+		"Version": "24",
+		"Debug": "disabled"
+	},
+	"Actions": [
+		{
+			"Name": "SimRail command",
+			"UUID": "com.simrailmqtt.streamdeck.command",
+			"Icon": "imgs/actions/command",
+			"Tooltip": "Sends a SimRail command (radio, doors, horn, lights, safety) and shows its state.",
+			"PropertyInspectorPath": "ui/command.html",
+			"Controllers": [
+				"Keypad"
+			],
+			"SupportedInMultiActions": true,
+			"UserTitleEnabled": true,
+			"States": [
+				{
+					"Image": "imgs/actions/key",
+					"ShowTitle": false
+				}
+			]
+		}
+	]
+}
